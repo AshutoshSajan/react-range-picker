@@ -1,0 +1,62 @@
+@import url('calender.css');
+@import url('reset.css');
+
+.app {
+  display: grid;
+  place-items: center;
+}
+
+.input-box {
+  border: 1px solid rgba(0,0,0,0.3);
+  margin-top: 20px;
+  transition: all 500ms ease-out;
+  padding: 4px 6px;
+  width: 300px;
+}
+
+.main-input {
+  width: 90%;
+  font-size: 18px;
+}
+
+.input-box:hover {
+  border-color: dodgerblue;
+}
+
+.far, .fas, .main-input {
+  /*font-size: 20px;*/
+  color: #666;
+}
+
+.error::-webkit-input-placeholder {
+  color: red;
+}
+
+.clear-input {
+  display: inline-block;
+  transform: rotate(45deg);
+}
+
+
+/*//////////////////////////////////////*/
+/*///////////date range css/////////////*/
+/*//////////////////////////////////////*/
+
+.range-input-box {
+  width: 600px;
+  /*display: flex;
+  justify-content: center;*/
+}
+
+.range-input-box input {
+  text-align: center;
+  font-size: 20px;
+}
+
+.range-input:nth-child(3n){
+  margin-right: 20px;
+}
+
+/*.range-input-box .far,.fas {
+  align-self: right;
+}*/
