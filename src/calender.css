@@ -9,7 +9,6 @@
 	display: flex;
 	padding: 6px 10px;
 	justify-content: space-between;
-	/*border-bottom: 1px solid rgba(0,0,0,0.4);*/
 }
 
 .calender-hdr span {
@@ -28,10 +27,8 @@
 }
 
 .today {
-	/*text-align: center;*/
 	color: dodgerblue;
 	cursor: pointer;
-	/*padding: 10px 0;*/
 	text-transform: uppercase;
 }
 
@@ -99,6 +96,7 @@
 .current-year {
 	color: #333;
 	font-weight: bold;
+	padding: 0 4px;
 }
 
 .current-month:hover,

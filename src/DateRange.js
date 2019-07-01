@@ -38,22 +38,22 @@ class DateRange extends Component {
   }
 
   setDate = (data, name) => {
-  	// console.log(data, name);
-    console.log(new Date(data), 'date range local date...');
 
-  	if(data && name) {
-      if(name === "endDate"){
-        console.log(name, 'name');
-        if(this.state.startDate){
-          if(new Date(data) > new Date(this.state.startDate)){
-            console.log(`%c ${this.state.startDate} ${this.state.endDate} date range`, "color: red");
-            this.setState({ endDate: data });
-          }
-        }
-      } else {
-        this.setState({ startDate: data });
-      }
-    }
+    this.setState({ [name]: data })
+    // console.log(new Date(data), 'date range local date...');
+
+  	// if(data && name) {
+   //    if(name === "endDate"){
+   //      if(this.state.startDate){
+   //        if(new Date(data) > new Date(this.state.startDate)){
+   //          console.log(`%c ${this.state.startDate} ${this.state.endDate} date range`, "color: red");
+   //          this.setState({ endDate: data });
+   //        }
+   //      }
+   //    } else {
+   //      this.setState({ startDate: data });
+   //    }
+   //  }
   }
 
   hideCalender = () => {
@@ -62,8 +62,6 @@ class DateRange extends Component {
 
 
   render() {
-    // console.log(this.state);
-    // console.log(this.state.endDate, "inside daterange rndr...");
     return (
       <div className="date-range" >
         <div 
@@ -71,7 +69,7 @@ class DateRange extends Component {
           onMouseEnter={this.mouseEnter}
           onMouseLeave={this.handleMouseLeave}
           onClick={ this.handleClick }
-          >
+        >
           <input
             type="text"
             className="range-input"
@@ -79,20 +77,37 @@ class DateRange extends Component {
             name="startDate"
             value={ this.state.startDate }
             onChange={ this.handleChage }
-            />
+          />
           <span> ~ </span>
-          <input type="text" className="range-input" placeholder="End Date" name="endDate" value={ this.state.endDate } onChange={ this.handleChage } />
+          <input 
+            type="text"
+            className="range-input"
+            placeholder="End Date"
+            name="endDate"
+            value={ this.state.endDate }
+            onChange={ this.handleChage }
+          />
             {
               this.state.icon ?
                 <i className="far fa-calendar"></i>
-              : <i className="fas fa-times-circle" onClick={this.handleClear}></i>
+              : <i className="fas fa-times-circle"
+                   onClick={this.handleClear}>
+                </i>
             }
 	      </div>
 	        {
 	          this.state.calender ?
 		          <div style={{display: "flex"}}>
-		            <Calender hideCalender={this.hideCalender} name="startDate" today={this.setDate}/>
-		            <Calender hideCalender={this.hideCalender} name="endDate" today={this.setDate}/>
+		            <Calender
+                  hideCalender={this.hideCalender}
+                  name="startDate"
+                  today={this.setDate}
+                />
+		            <Calender
+                  hideCalender={this.hideCalender}
+                  name="endDate"
+                  today={this.setDate}
+                />
 		          </div>
 	          : null
 	        }

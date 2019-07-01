@@ -24,7 +24,6 @@
 }
 
 .far, .fas, .main-input {
-  /*font-size: 20px;*/
   color: #666;
 }
 
@@ -44,8 +43,6 @@
 
 .range-input-box {
   width: 600px;
-  /*display: flex;
-  justify-content: center;*/
 }
 
 .range-input-box input {
@@ -56,7 +53,3 @@
 .range-input:nth-child(3n){
   margin-right: 20px;
 }
-
-/*.range-input-box .far,.fas {
-  align-self: right;
-}*/
