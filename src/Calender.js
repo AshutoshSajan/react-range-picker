@@ -38,55 +38,59 @@ class Calender extends Component {
 		}
 	}
 	
-	handleClick = (e) => {
 
-		if(e.target.dataset.key === "dec-year"){
-			this.setState((state) => ({
-					year: --state.year,
-					selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }`
-				}),
-				() =>	this.props.today(this.state.selectedDay, this.props.name)
-			);
-		} else if(e.target.dataset.key === "dec-month"){
-			if(this.state.month === 1){
-				this.setState((state) => ({
-					year: --state.year,
-					month: 12,
-					selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }` 
-					}),
-				 () => this.props.today(this.state.selectedDay, this.props.name));
-			} else {
-				this.setState((state) => ({
-					month: --state.month,
-					selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }` 
-				}),
-				() => this.props.today(this.state.selectedDay, this.props.name));
-			}
-		} else if(e.target.dataset.key === "inc-year"){
-			this.setState((state) => ({
-				year: ++state.year,
+	decYear = () => {
+		this.setState((state) => ({
+				year: --state.year,
 				selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }`
 			}),
+			() =>	this.props.today(this.state.selectedDay, this.props.name)
+		);
+	} 
+
+	decMonth = () => {
+		if(this.state.month === 1){
+			this.setState((state) => ({
+				year: --state.year,
+				month: 12,
+				selectedDay: `${state.year}/12/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }` 
+				}),
+			 () => this.props.today(this.state.selectedDay, this.props.name));
+		} else {
+			this.setState((state) => ({
+				month: --state.month,
+				selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }` 
+			}),
 			() => this.props.today(this.state.selectedDay, this.props.name));
-		} else if(e.target.dataset.key === "inc-month"){
-				if(this.state.month === 12){
-					this.setState((state) => ({
-						month: 1,
-						year: ++state.year,
-						selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }`
-					}),
-					() => {
-						this.props.today(this.state.selectedDay, this.props.name);
-					});
-				} else {
-					this.setState((state) => ({
-						month: ++state.month,
-						selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }` 
-					}),
-					() => this.props.today(this.state.selectedDay, this.props.name)
-				);
-			}
-		}else	return null;
+		}
+	} 
+
+	incYear = () => {
+		this.setState((state) => ({
+			year: ++state.year,
+			selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }`
+		}),
+		() => this.props.today(this.state.selectedDay, this.props.name));
+	} 
+
+	incMonth = () => {
+			if(this.state.month === 12){
+				this.setState((state) => ({
+					month: 1,
+					year: ++state.year,
+					selectedDay: `${state.year}/01/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }`
+				}),
+				() => {
+					this.props.today(this.state.selectedDay, this.props.name);
+				});
+			} else {
+				this.setState((state) => ({
+					month: ++state.month,
+					selectedDay: `${state.year}/${state.month.toString().length < 2 ? "0" + state.month.toString() : state.month }/${state.date.toString().length < 2 ? "0" + state.date.toString() : state.date }` 
+				}),
+				() => this.props.today(this.state.selectedDay, this.props.name)
+			);
+		}
 	}
 
 	getMonthDays = (year, month, num = 0) => {
@@ -115,15 +119,22 @@ class Calender extends Component {
 		this.setState(
 			{ date: innerText, selectedDay: selectedDay },
 			() => this.props.today(selectedDay, this.props.name)
-			);
+		);
 	}
 
 	handleMonth = () => {
-		this.setState({ showMonth: !this.state.showMonth, showYear: false });
+		this.setState({
+			showMonth: !this.state.showMonth,
+			showYear: false
+		});
 	}
 
 	handleYear = () => {
-		this.setState({ showYear: !this.state.showYear, showMonth: false, calenderHdr: false });
+		this.setState({
+			showYear: !this.state.showYear,
+			showMonth: false,
+			calenderHdr: false
+		});
 	}
 
 	selectMonth = (e) => {
@@ -144,18 +155,19 @@ class Calender extends Component {
 		this.setState({ 
 			day: this.date.getDay(),
 			month: this.date.getMonth() + 1,
-			year: this.date.getFullYear() 
+			year: this.date.getFullYear()
 		},
 		() => this.props.today(this.state.today, this.props.name));
 	}
 
-	handleYears = (e, prevYear) => {
-		
-		if(e.target.dataset.key === "incYearsRange"){
-			this.setState({ years: prevYear + 10 });
-		} else {
-			this.setState({ years: prevYear - 10 });
-		}
+	decYearsRange = (year) => {
+		console.log(year);
+		this.setState({ years: year - 10 });
+	}
+
+	incYearsRange = (year) => {
+		console.log(year);
+		this.setState({ years: year + 10 });
 	}
 
 	// year selection method
@@ -220,19 +232,11 @@ class Calender extends Component {
 						{
 							calenderHdr ? 
 								<div className="calender-hdr">
-									<span
-										onClick={this.handleClick}
-										data-key="dec-year">
-										{"<<"}
-									</span>
+									<span onClick={this.decYear}>{"<<"}</span>
 
-									<span 
-										onClick={this.handleClick}
-										data-key="dec-month">
-										{"<"}
-									</span>
+									<span onClick={this.decMonth}>{"<"}</span>
 
-									<h3>
+									<div className="year_month">
 										<span
 											className="current-month"
 											onClick={this.handleMonth}>
@@ -244,17 +248,9 @@ class Calender extends Component {
 											onClick={this.handleYear}>
 											{ year }
 										</span>
-									</h3>
-									<span
-										onClick={this.handleClick}
-										data-key="inc-month">
-										{">"}
-									</span>
-									<span
-										onClick={this.handleClick}
-										data-key="inc-year">
-										{">>"}
-									</span>
+									</div>
+									<span onClick={this.incMonth}>{">"}</span>
+									<span onClick={this.incYear}>{">>"}</span>
 								</div>
 								: null
 						}
@@ -275,16 +271,14 @@ class Calender extends Component {
 										<div>
 											<div className="years-range">
 												<span
-													onClick={(e) => this.handleYears(e, yearsArr[1])}
-													data-key="decYearsRange">
+													onClick={(e) => this.decYearsRange(yearsArr[1])}>
 													{"<<"}
 												</span>
 
 												<p>{`${ yearsArr[yearsArr.length - 2] } - ${ yearsArr[1] }`}
 												</p>
 												<span
-													onClick={(e) => this.handleYears(e, yearsArr[yearsArr.length - 2])}
-													data-key="incYearsRange">
+													onClick={(e) => this.incYearsRange(yearsArr[yearsArr.length - 2])}>
 													{">>"}
 												</span>
 											</div>
@@ -297,10 +291,7 @@ class Calender extends Component {
 															className={ idx === 0 || idx === yearsArr.length - 1 ? "fade" : null }
 															key={idx}
 															onClick={
-																idx === 0 ?
-																	null
-																: idx === yearsArr.length - 1 ?
-																	null
+																idx === 0 || idx === yearsArr.length - 1 ? null
 																: () => this.selectYear(year)
 															}>
 															{year}

@@ -2,7 +2,7 @@
 	border-left: 1px solid rgba(0,0,0,0.4);
 	border-right: 1px solid rgba(0,0,0,0.4);
 	width: 300px;
-	height:fit-content;
+	height: fit-content;
 }
 
 .calender-hdr {
@@ -15,7 +15,7 @@
 	cursor: pointer;
 }
 
-.calender-hdr h3 {
+.year_month {
 	width: 110px;
 	text-align: center;
 }
