@@ -39,21 +39,24 @@ class DateRange extends Component {
 
   setDate = (data, name) => {
 
-    this.setState({ [name]: data })
-    // console.log(new Date(data), 'date range local date...');
+    // this.setState({ [name]: data })
+    console.log(new Date(data), data, name, 'date range local date...');
 
-  	// if(data && name) {
-   //    if(name === "endDate"){
-   //      if(this.state.startDate){
-   //        if(new Date(data) > new Date(this.state.startDate)){
-   //          console.log(`%c ${this.state.startDate} ${this.state.endDate} date range`, "color: red");
-   //          this.setState({ endDate: data });
-   //        }
-   //      }
-   //    } else {
-   //      this.setState({ startDate: data });
-   //    }
-   //  }
+    if(data && name) {
+       if(name === "endDate" && this.state.startDate ){
+         if((new Date(data).getFullYear() >= new Date(this.state.startDate).getFullYear() && new Date(data).getMonth() >= new Date(this.state.startDate).getMonth() && new Date(data).getDate() > new Date(this.state.startDate).getDate()) || new Date(data) > new Date(this.state.startDate)){
+           this.setState({ endDate: data });
+         }
+       } else if(name === "endDate" && !this.state.startDate){
+          this.setState({ endDate: data });
+       } else if(name === "startDate" && this.state.endDate){
+          if((new Date(data).getFullYear() <= new Date(this.state.endDate).getFullYear() && new Date(data).getMonth() <= new Date(this.state.endDate).getMonth() && new Date(data).getDate() < new Date(this.state.endDate).getDate()) || new Date(data) < new Date(this.state.endDate)){
+            this.setState({ startDate: data });
+         }
+       } else {
+         this.setState({ startDate: data });
+       }
+     }
   }
 
   hideCalender = () => {
@@ -117,4 +120,3 @@ class DateRange extends Component {
 }
 
 export default DateRange;
-
