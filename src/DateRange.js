@@ -39,9 +39,6 @@ class DateRange extends Component {
 
   setDate = (data, name) => {
 
-    // this.setState({ [name]: data })
-    console.log(new Date(data), data, name, 'date range local date...');
-
     if(data && name) {
        if(name === "endDate" && this.state.startDate ){
          if((new Date(data).getFullYear() >= new Date(this.state.startDate).getFullYear() && new Date(data).getMonth() >= new Date(this.state.startDate).getMonth() && new Date(data).getDate() > new Date(this.state.startDate).getDate()) || new Date(data) > new Date(this.state.startDate)){

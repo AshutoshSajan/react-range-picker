@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Date } from 'my-react-date-picker';
+// import DatePicker from 'my-react-date-picker';
 
 import './App.css';
 import DateRange from './DateRange';
@@ -10,7 +10,7 @@ class App extends Component {
   render(){
     return (
       <div className="app" >
-      	{ /* <Date /> */ }
+      	{ /* <DatePicker /> */ }
         <DateRange />
       </div>
     )
