@@ -116,8 +116,13 @@ class Calender extends Component {
 		const { month, year } = this.state;
 		const selectedDay = `${year}/${month.toString().length < 2 ? "0" + month : month }/${innerText.length < 2 ? "0" + innerText : innerText }`;
 
-		this.setState(
-			{ date: innerText, selectedDay: selectedDay },
+		this.setState({
+			date: innerText,
+			selectedDay: selectedDay,
+			showYear: false,
+			showMonth: false,
+			calenderHdr: true
+		},
 			() => this.props.today(selectedDay, this.props.name)
 		);
 	}
@@ -156,13 +161,16 @@ class Calender extends Component {
 			day: this.date.getDay(),
 			month: this.date.getMonth() + 1,
 			year: this.date.getFullYear(),
-			years: this.date.getFullYear()
+			years: this.date.getFullYear(),
+			showYear: false,
+			showMonth: false,
+			calenderHdr: true
 		},
 		() => this.props.today(this.state.today, this.props.name));
 	}
 
 	decYearsRange = (year) => {
-		this.setState({ years: year - 20 });
+		this.setState({ years: year - 10 });
 	}
 
 	incYearsRange = (year) => {
@@ -186,7 +194,7 @@ class Calender extends Component {
 		const isCurrnetMonth = new Date().getMonth() === +(this.state.month - 1);
 		const isCurrnetYear = new Date().getFullYear() === +(this.state.year);
 		const firstDay = this.getMonthDays(year, (month - 1), 1).split(' ');
-		
+
 		// to get the all days of previous month
 		const previousMonthDays = this.getMonthDays(year, (month - 1));
 		
@@ -270,14 +278,16 @@ class Calender extends Component {
 										<div>
 											<div className="years-range">
 												<span
-													onClick={(e) => this.decYearsRange(yearsArr[yearsArr.length - 2])}>
+													onClick={
+														() => this.decYearsRange(yearsArr[yearsArr.length - 2])}>
 													{"<<"}
 												</span>
 
 												<p>{`${ yearsArr[yearsArr.length - 2] } - ${ yearsArr[1] }`}
 												</p>
 												<span
-													onClick={(e) => this.incYearsRange(yearsArr[yearsArr.length - 2])}>
+													onClick={
+														() => this.incYearsRange(yearsArr[yearsArr.length - 2])}>
 													{">>"}
 												</span>
 											</div>
