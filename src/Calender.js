@@ -155,18 +155,17 @@ class Calender extends Component {
 		this.setState({ 
 			day: this.date.getDay(),
 			month: this.date.getMonth() + 1,
-			year: this.date.getFullYear()
+			year: this.date.getFullYear(),
+			years: this.date.getFullYear()
 		},
 		() => this.props.today(this.state.today, this.props.name));
 	}
 
 	decYearsRange = (year) => {
-		console.log(year);
-		this.setState({ years: year - 10 });
+		this.setState({ years: year - 20 });
 	}
 
 	incYearsRange = (year) => {
-		console.log(year);
 		this.setState({ years: year + 10 });
 	}
 
@@ -271,7 +270,7 @@ class Calender extends Component {
 										<div>
 											<div className="years-range">
 												<span
-													onClick={(e) => this.decYearsRange(yearsArr[1])}>
+													onClick={(e) => this.decYearsRange(yearsArr[yearsArr.length - 2])}>
 													{"<<"}
 												</span>
 
