@@ -7,7 +7,7 @@
 }
 
 .input-box {
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 20px;
   transition: all 500ms ease-out;
   padding: 4px 6px;
@@ -23,7 +23,9 @@
   border-color: dodgerblue;
 }
 
-.far, .fas, .main-input {
+.far,
+.fas,
+.main-input {
   color: #666;
 }
 
@@ -43,13 +45,14 @@
 
 .range-input-box {
   width: 600px;
+  text-align: center;
 }
 
 .range-input-box input {
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
 }
 
-.range-input:nth-child(3n){
+.range-input:nth-child(3n) {
   margin-right: 20px;
 }
